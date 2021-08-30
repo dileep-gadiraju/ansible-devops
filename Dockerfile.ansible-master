@@ -1,0 +1,8 @@
+FROM ubuntu:latest
+LABEL org.opencontainers.image.authors="Dileep Gadiraju"
+
+#####Install Dependencies #####
+RUN apt update
+RUN apt install python ansible openssh-client vim iputils-ping -y
+
+

@@ -1,0 +1,10 @@
+FROM ubuntu:latest
+LABEL org.opencontainers.image.authors="Dileep Gadiraju"
+
+##### Install client dependecies #####
+RUN apt update
+RUN apt install ssh vim python -y
+
+##### Set PermitRootLogin to yes in /etc/ssh/sshd_config and restart ssh #####
+RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
+RUN service ssh restart
