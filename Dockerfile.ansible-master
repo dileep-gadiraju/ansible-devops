@@ -1,8 +1,17 @@
-FROM ubuntu:latest
+ARG UBUNTU_TAG=latest
+FROM ubuntu:$UBUNTU_TAG
 LABEL org.opencontainers.image.authors="Dileep Gadiraju"
+
+ENV ANSIBLE_NODE_IP=172.17.0.2
 
 #####Install Dependencies #####
 RUN apt update
 RUN apt install python ansible openssh-client vim iputils-ping -y
 
+##### Generate SSH Key #####
+RUN ["/bin/bash", "-c", "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y"]
+
+##### SSH Copy ID to client IP Address in ENTRYPOINT #####
+RUN echo " Client Ip ::" $ANSIBLE_NODE_IP
+ENTRYPOINT ssh-copy-id  root@$ANSIBLE_NODE_IP
 

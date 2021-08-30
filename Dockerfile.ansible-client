@@ -1,10 +1,14 @@
-FROM ubuntu:latest
+ARG UBUNTU_TAG=latest
+ARG ROOT_PASSWD=welcome
+FROM ubuntu:$UBUNTU_TAG
 LABEL org.opencontainers.image.authors="Dileep Gadiraju"
 
 ##### Install client dependecies #####
 RUN apt update
 RUN apt install ssh vim python -y
 
+##### Set root password #####
+RUN RUN echo "root:$ROOT_PASSWD" | chpasswd
 ##### Set PermitRootLogin to yes in /etc/ssh/sshd_config and restart ssh #####
 RUN echo "PermitRootLogin yes" >> /etc/ssh/sshd_config
-RUN service ssh restart
+#RUN service ssh restart

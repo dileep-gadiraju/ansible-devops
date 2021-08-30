@@ -52,7 +52,15 @@
 - docker network inspect bridge
 
 ## Build Ansible master from Dockerfile
-- docker build -f ./Dockerfile.ansible-master .
+- docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-master:1.0-latest 
+- docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-master:1.0-latest --ENV ANSIBLE_NODE_IP=172.17.0.3 --build-arg UBUNTU_TAG=impish
+
+## Run Ansible master container
+- docker run --name ansible_master -it dileep-gadiraju/ansible-master:1.0-latest --env ANSIBLE_NODE_IP=172.17.0.2
 
 ## Build Ansible client from Dockerfile
-- docker build -f ./Dockerfile.ansible-client .
+- docker build -f ./Dockerfile.ansible-client . -t dileep-gadiraju/ansible-client:1.0-latest --build-arg ROOT_PASSWD=welcome
+- docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-client:1.0-latest --build-arg UBUNTU_TAG=12.02
+
+## Run Ansible client container
+- docker run --name ansible_client -it dileep-gadiraju/ansible-client:1.0-latest
