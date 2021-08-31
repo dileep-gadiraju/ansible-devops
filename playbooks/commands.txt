@@ -1,0 +1,5 @@
+# validate playbook.
+ansible-playbook http-install-playbook.yml --syntax-check
+
+# execute ansible playbook
+ansible-playbook http-install-playbook.yml

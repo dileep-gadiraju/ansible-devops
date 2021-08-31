@@ -53,7 +53,7 @@
 
 ## Build Ansible master from Dockerfile
 - docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-master:1.0-latest 
-- docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-master:1.0-latest --build-arg UBUNTU_TAG=impish
+- docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-master:1.0-latest --build-arg OS_TAG=impish
 - --ENV ANSIBLE_NODE_IP=172.17.0.3 
 
 ## Run Ansible master container
@@ -62,7 +62,7 @@
 
 ## Build Ansible client from Dockerfile
 - docker build -f ./Dockerfile.ansible-client . -t dileep-gadiraju/ansible-client:1.0-latest --build-arg ROOT_PASSWD=welcome
-- docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-client:1.0-latest --build-arg UBUNTU_TAG=12.02
+- docker build -f ./Dockerfile.ansible-master . -t dileep-gadiraju/ansible-client:1.0-latest --build-arg OS_TAG=12.02
 
 ## Run Ansible client container
 - docker run --name ansible_client -it dileep-gadiraju/ansible-client:1.0-latest

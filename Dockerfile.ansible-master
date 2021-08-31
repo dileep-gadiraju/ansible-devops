@@ -1,10 +1,10 @@
-ARG UBUNTU_TAG=latest
-FROM ubuntu:$UBUNTU_TAG
+ARG OS_TAG=latest
+FROM ubuntu:$OS_TAG
 LABEL org.opencontainers.image.authors="Dileep Gadiraju"
 
 #####Install Dependencies #####
 RUN apt update
-RUN apt install python ansible openssh-client vim iputils-ping -y
+RUN apt install python python-apt ansible openssh-client vim iputils-ping -y
 
 ##### Generate SSH Key #####
 RUN ["/bin/bash", "-c", "ssh-keygen -t rsa -N '' -f ~/.ssh/id_rsa <<< y"]

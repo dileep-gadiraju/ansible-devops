@@ -1,0 +1,22 @@
+# Simple Ansible Playbook to install httpd on nodes
+---
+- name: This sets up an httpd webserver
+  hosts: client_group
+  tasks:
+  - name: Install Apache packages
+    yum:
+      name: httpd
+      state: present
+  - name: Ensure httpd is running
+    service:
+      name: httpd
+      state: started
+  - name: Open port 80 for http access
+    firewalld:
+      service: httpd
+      permanent: true
+      state: enabled
+  - name: Restart the firewalld service to load in the firewall settings
+    service:
+      name: firewalld
+      state: restarted

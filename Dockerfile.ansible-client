@@ -1,6 +1,6 @@
-ARG UBUNTU_TAG=latest
+ARG OS_TAG=latest
 ARG ROOT_PASSWD=welcome
-FROM ubuntu:$UBUNTU_TAG
+FROM ubuntu:$OS_TAG
 LABEL org.opencontainers.image.authors="Dileep Gadiraju"
 
 ##### Install client dependecies #####
